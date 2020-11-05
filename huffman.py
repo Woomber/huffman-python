@@ -69,6 +69,9 @@ def _assign_codes(root):
     return code_dict
 
 
+def regular_binary(string: str):
+    return ''.join(format(ord(x), 'b') for x in string)
+
 def compress(string: str):
 
     frecuencias = {}
@@ -89,11 +92,7 @@ def compress(string: str):
 
     print(compressed)
 
-    compressed_binary = int(compressed, 2)
-
-    print(compressed_binary)
-
-    return (compressed, bytearray(compressed_binary))
+    return compressed
 
 
 compress('anita lava la tina')
