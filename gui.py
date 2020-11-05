@@ -2,6 +2,7 @@ import tkinter.filedialog as filedialog
 import tkinter as tk
 import huffman
 
+
 class HuffmanUI(tk.Frame):
 
     def __init__(self):
@@ -32,7 +33,6 @@ class HuffmanUI(tk.Frame):
         self.bin_text = tk.StringVar()
         (tk.Message(root, textvariable=self.bin_text, anchor='nw')
             .grid(row=4,pady=10,padx=10,column=0, columnspan=2, sticky=tk.N+tk.S+tk.E+tk.W))
-
 
         (tk.Label(root, text='Texto comprimido en binario:')
             .grid(row=5, column=0, padx=10, sticky='sw'))

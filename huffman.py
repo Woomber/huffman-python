@@ -1,5 +1,6 @@
 from typing import Dict, Tuple, List
 
+
 class Node:
     def __init__(self, char=None, count=0):
         self.char: str or None = char
@@ -21,29 +22,30 @@ def _bfs(root: Node):
     return nodelist
 
 
-def _dict_to_tree(dict: Dict[str, int]) -> Node:
-    sortedlist = sorted(dict.items(), key=lambda x: x[1])
-    treelist = []
+def _dict_to_tree(freq_dict: Dict[str, int]) -> Node:
+    sortedlist = sorted(freq_dict.items(), key=lambda x: x[1])
+    tree_list = []
     for item in sortedlist:
-        treelist.append(Node(item[0], item[1]))
+        tree_list.append(Node(item[0], item[1]))
 
     root = None
     
-    while treelist:
-        item1 = treelist.pop(0)
-        item2 = treelist.pop(0)
+    while tree_list:
+        item1 = tree_list.pop(0)
+        item2 = tree_list.pop(0)
 
         combined = Node(count=item1.count + item2.count)
         combined.children = [item1, item2]
 
-        if not treelist:
+        if not tree_list:
             root = combined
         else:
-            treelist.append(combined)
+            tree_list.append(combined)
 
-        treelist.sort(key=lambda x: x.count)
+        tree_list.sort(key=lambda x: x.count)
 
     return root
+
 
 def _print_tree(root):
     for item in _bfs(root):
@@ -52,14 +54,14 @@ def _print_tree(root):
             print(f'-- child: {child.char} ({child.count})')
 
 
-def _assign_code_char(dict, node, code):
+def _assign_code_char(code_dict, node, code):
 
     if node.char:
-        dict[node.char] = code
+        code_dict[node.char] = code
     
     if len(node.children) == 2:
-        _assign_code_char(dict, node.children[0], code + '0')
-        _assign_code_char(dict, node.children[1], code + '1')
+        _assign_code_char(code_dict, node.children[0], code + '0')
+        _assign_code_char(code_dict, node.children[1], code + '1')
 
 
 def _assign_codes(root):
@@ -90,9 +92,4 @@ def compress(string: str):
     for char in string:
         compressed = compressed + codes[char]
 
-    print(compressed)
-
     return compressed
-
-
-compress('anita lava la tina')
