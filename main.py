@@ -3,7 +3,7 @@ Implementación del Algoritmo de Compresión de Huffman
 
 Yael Chavoya
 """
-from gui import HuffmanUI
+from ui.gui import HuffmanUI
 
 
 def main():
