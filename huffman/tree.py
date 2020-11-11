@@ -17,6 +17,9 @@ class Tree:
         tree_list = []
         for item in sortedlist:
             tree_list.append(Node(item[0], item[1]))
+
+        if len(tree_list) == 1:
+            self.root = tree_list.pop(0)
         
         while tree_list:
             item1 = tree_list.pop(0)
@@ -64,7 +67,11 @@ class Tree:
             self._assign_code_char(code_dict, node.children[1], code + '1')
 
     def to_code_dict(self) -> Dict[str, str]:
+        if not self.root.children:
+            return {self.root.char: '0'}
+        
         code_dict = {}
+
         self._assign_code_char(code_dict, self.root, '')
 
         return code_dict

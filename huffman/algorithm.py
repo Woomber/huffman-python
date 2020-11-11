@@ -1,9 +1,10 @@
 from typing import Dict, Tuple, List
 from huffman.tree import Tree
 import huffman.tools as tools
+import re
+
 
 def compress(string: str):
-
     frecuencias = {}
 
     for char in string:
@@ -26,8 +27,7 @@ def encode_key(codes: Dict[str, str]):
     encoded = ''
     for char, code in codes.items():
         char_hex = hex(int(tools.str_to_bin(char),2))
-        code_hex = hex(int(code,2))
-        encoded += char_hex[2:] + '.' + code_hex[2:] + ':'
+        encoded += char_hex[2:] + '.' + code + ':'
     return encoded[:-1]
 
 
@@ -52,7 +52,6 @@ def decompress(binstring: str, codes: Dict[str, str]):
         for char, code in codes.items():
             if capture == code[0:len(capture)]:
                 matches.append(char)
-        print(capture, matches)
         if len(matches) == 1:
             fullstr += matches[0]
             capture = ''
