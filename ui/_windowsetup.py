@@ -12,7 +12,7 @@ class MainWindow(tk.Frame):
     def __init__(self, title, compress_fn, decompress_fn):
         tk.Frame.__init__(self)
         root = self.master
-        root.title()
+        root.title(title)
         root.geometry(f'{charwidth + 150}x400')
 
         self.bold_font = font.Font(family='TkTextFont', size=10, weight='bold')
